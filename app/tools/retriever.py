@@ -8,9 +8,8 @@ def document_search(query: str) -> str:
 
     vectordb = get_vectorstore()
     retriever = vectordb.as_retriever(search_kwargs={"k": 3})
-
     docs = retriever.invoke(query)
-    print("DEBUG DOCS:", docs)
+   
 
     results = []
     for doc in docs:

@@ -10,14 +10,17 @@ from parser.output_parser import get_output_parser
 def get_rag_chain():
     """Modern LCEL-based RAG pipeline."""
 
-    llm = OllamaLLM(model="llama3")
+    # format="json" enables Ollama's constrained decoding —
+    # the model is physically unable to produce invalid JSON at the token level.
+    # No post-processing or manual fixing needed.
+    llm = OllamaLLM(model="llama3", format="json")
 
     parser = get_output_parser()
     prompt = get_prompt(parser)
 
     # 🔹 Step 1: Retrieve documents
     def retrieve(query: str):
-        return document_search.invoke({"query": query})  
+        return document_search.invoke({"query": query})
 
     # 🔹 Step 2: Prepare input for prompt
     def prepare(data):
@@ -36,6 +39,7 @@ def get_rag_chain():
         | prompt
         | llm
         | StrOutputParser()
+        | RunnableLambda(parser.parse)
     )
 
     return chain, parser
