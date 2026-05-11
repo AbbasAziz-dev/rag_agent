@@ -1,4 +1,4 @@
-from langchain.memory import ConversationBufferMemory
+from langchain.memory import ConversationBuffer
 
 
 def get_memory():
