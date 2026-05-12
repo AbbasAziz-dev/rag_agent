@@ -17,21 +17,21 @@ def initialize_data():
         count = 0
  
     if count == 0:
-        print("⚠️ No data found. Running ingestion...")
+        print(" No data found. Running ingestion...")
  
-        # 👉 PUT YOUR FILE PATH HERE
+        # PUT YOUR FILE PATH HERE
         ingest("data/docs/Intern_Training_Plan_Feb2026.docx")
  
     else:
-        print(f"✅ DB already has {count} documents")
+        print(f" DB already has {count} documents")
  
  
 def main():
-    print("🚀 Starting RAG System...")
+    print(" Starting RAG System...")
  
     initialize_data()  
  
-    print("🚀 RAG System Ready")
+    print(" RAG System Ready")
  
     while True:
         query = input("\nAsk: ")

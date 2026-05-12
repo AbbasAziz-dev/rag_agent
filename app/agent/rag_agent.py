@@ -8,12 +8,10 @@ from parser.output_parser import get_output_parser
 
 
 def get_rag_chain():
-    """Modern LCEL-based RAG pipeline."""
+    """LCEL-based RAG pipeline."""
 
-    # format="json" enables Ollama's constrained decoding —
-    # the model is physically unable to produce invalid JSON at the token level.
-    # No post-processing or manual fixing needed.
-    llm = OllamaLLM(model="llama3", format="json")
+    
+    llm = OllamaLLM(model="llama3", format="json",temperature=0.3 )
 
     parser = get_output_parser()
     prompt = get_prompt(parser)
